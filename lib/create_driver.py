@@ -1,7 +1,10 @@
+"""
+@author: Jaroslaw Tanistra
+"""
+
 from lib.configuration_reader import load_configuration_from_file
 from appium import webdriver
 import os
-__author__ = 'jarek tanistra'
 
 
 def create_driver(platform, reinstallApp=True):
@@ -28,7 +31,6 @@ def create_driver(platform, reinstallApp=True):
         CONFIG_IOS = load_configuration_from_file('config_iOS.json')
         desktopFile = os.path.expanduser(CONFIG_IOS['APP_PATH'])
         app = os.path.join(desktopFile, CONFIG_IOS['APP_NAME'])
-        absApp = os.path.abspath(app)
         driver = webdriver.Remote(
             command_executor=CONFIG_IOS['REMOTE'],
             desired_capabilities={
