@@ -1,6 +1,6 @@
 # mobileTestZKwiatuszkiem
 
-Sample project for testing mobile applications.
+Project for testing s-labs mobile applications.
 
 Available platforms: iOS and Android.
 
