@@ -13,10 +13,12 @@ def create_driver(platform, reinstallApp=True):
     :return: driver
     """
     platform = platform.upper()
+    print('start')
     if platform == 'ANDROID':
         CONFIG_ANDROID = load_configuration_from_file('android_config.json')
         desktopFile = os.path.expanduser(CONFIG_ANDROID['APP_PATH'])
-        app = os.path.join(desktopFile, CONFIG_ANDROID['APP_NAME'])
+        app = '/Users/jarek/Desktop/AppiumApps/app-debug.apk'
+        # app = os.path.join(desktopFile, CONFIG_ANDROID['APP_NAME'])
         desired_caps = {}
         desired_caps['platformName'] = CONFIG_ANDROID['PLATFORM_NAME']
         desired_caps['platformVersion'] = CONFIG_ANDROID['PLATFORM_VERSION']
@@ -44,3 +46,6 @@ def create_driver(platform, reinstallApp=True):
     else:
         raise AssertionError('[ERROR] Available platforms: iOS or Android only')
     return driver
+
+if __name__ == '__main__':
+    create_driver('Android')

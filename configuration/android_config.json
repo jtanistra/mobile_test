@@ -1,11 +1,11 @@
 {
     "APP_PATH": "~/Desktop/AppiumApps/",
-    "APP_NAME": "slab.apk",
+    "APP_NAME": "apk-debug.apk",
     "REMOTE": "http://localhost:4723/wd/hub",
-    "APP_ACTIVITY": "MainActivity",
-    "DEVICE_NAME": "Nexus 5",
+    "APP_ACTIVITY": "com.silvair.app.activity.MainActivity",
+    "DEVICE_NAME": "ASUS_Z00ED",
     "PLATFORM_NAME": "Android",
-    "PLATFORM_VERSION": "5.0",
-    "APP_PACKAGE": "io.slabs.mesh",
-    "APP_WAIT_ACTIVITY": "io.slabs.mesh.MainActivity"
+    "PLATFORM_VERSION": "5.0.1",
+    "APP_PACKAGE": "com.silvair.app",
+    "APP_WAIT_ACTIVITY": "com.silvair.app.activity.MainActivity"
 }
