@@ -1,32 +1,45 @@
-import sys
 import os
-path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../..'))
+import sys
+
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 if not path in sys.path:
     sys.path.insert(0, path)
 from lib.appium_starter import start_appium, stop_appium
 from lib.create_driver import create_driver
-from lib.adb_commnads import adb_shell_screenrecord, adb_shell_screenrecord_stop, adb_pull, adb_logcat_android
+from lib.adb_commnads import adb_shell_screenrecord, adb_logcat_android, adb_shell_screenrecord_stop
+from lib.configuration_reader import load_configuration_from_file
+from main.src.android_lib import AndroidLib
 
+CONFIG = load_configuration_from_file('android_config.json')
 
 def before_all(context):
     start_appium()
 
 
 def before_feature(context, feature):
-    context.driver = create_driver('android', reinstallApp=True)
     print("Before feature\n")
+    context.driver = create_driver('android', reinstallApp=True)
 
 
 def before_scenario(context, scenario):
-    adb_shell_screenrecord('/sdcard/Download')
+    print("Before scenario\n")
+    adb_shell_screenrecord(CONFIG['REC_PATH'])
+    adb_logcat_android(CONFIG['ANDROID_TAGS_ALL'])
     context.driver.close_app()
     context.driver.launch_app()
-    print("Before scenario\n")
 
 
 def after_scenario(context,scenario):
     print("After scenario\n")
+    adb_shell_screenrecord_stop()
+    if context.failed:
+        context.andr_lib = AndroidLib(context.driver)
+        movie_name = scenario.__dict__['name'] + '.mp4'
+        print(scenario.__dict__['name'].replace(' ', ''))
+        print(movie_name)
+        context.andr_lib.get_recorded_test(movie_name.replace(' ', ''))
     context.driver.close_app()
+
 
 def after_feature(context,feature):
     context.driver.quit()
@@ -34,5 +47,5 @@ def after_feature(context,feature):
 
 
 def after_all(context):
-    print("Executing after all")
+    print("Executing after all\n")
     stop_appium()

@@ -159,6 +159,7 @@ def adb_shell_screenrecord(file, **kwargs):
     """
     cmd = 'adb shell screenrecord ' + file
     _execute_subprocess(cmd)
+    print('INFO: Screen recording started')
 
 
 def adb_shell_screenrecord_stop():
@@ -169,3 +170,6 @@ def adb_shell_screenrecord_stop():
     adb_kill_server()
     adb_devices()
     print('INFO: Screen Recording stopped')
+
+
+
