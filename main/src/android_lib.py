@@ -3,7 +3,6 @@ from lib.configuration_reader import load_configuration_from_file
 import os
 from selenium.webdriver.common.by import By
 from lib.driver_commands import DriverCommands
-from attrdict import AttrDict
 
 
 class AndroidLib():
@@ -69,6 +68,9 @@ class AndroidLib():
         self.dr_commands.find_element(self.android_bth_switch_selector).click()
 
     def bth_enable(self):
+        """
+        function checks bluetooth state and turn it on if state is off
+        """
         print('INFO: Trying enable bluetooth')
         state = self.bth_is_enabled()
         if state:
@@ -78,6 +80,9 @@ class AndroidLib():
             print('INFO: Bluetooth enabled')
 
     def bth_disable(self):
+        """
+        function checks bluetooth state and turn it off if state is on
+        """
         print("INFO: Trying disable bluetooth")
         state = self.bth_is_enabled()
         if state:
@@ -86,21 +91,13 @@ class AndroidLib():
         else:
             print('WARNING: Bluetooth is already disabled')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def bth_restart(self):
+        """
+        Functions turn off and turn on bluetooth adapter
+        """
+        self.bth_disable()
+        self._bth_switch_click()
+        print('INFO: Adapter restarted')
 
 
 
@@ -110,7 +107,7 @@ class AndroidLib():
 # from datetime import datetime
 # from time import sleep
 # import subprocess
-#
+
 # class android:
 #     def __init__(self, driver):
 #         self.driver = driver
@@ -123,7 +120,8 @@ class AndroidLib():
 #         self.killTaskButtonId = "com.android.systemui:id/dismiss_task"
 #         self.scrennHeight = self.driver.get_window_size()['height']
 #         self.scrennWidth = self.driver.get_window_size()['width']
-#
+
+
 #     def expandUpperBar(self):
 #         bar = self.driver.find_element_by_id(self.androidBarId)
 #         self.driver.tap([[self.scrennWidth/2, 20]])
