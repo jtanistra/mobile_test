@@ -25,7 +25,7 @@ def create_driver(platform, reinstallApp=True):
             desired_caps['app'] = app
         desired_caps['appPackage'] = CONFIG_ANDROID['APP_PACKAGE']
         desired_caps['appActivity'] = CONFIG_ANDROID['APP_ACTIVITY']
-        print("[DEBUG]: Desired capabilities: ", desired_caps)
+        print("[DEBUG]: App launched with Desired capabilities: ", desired_caps)
         driver = webdriver.Remote(CONFIG_ANDROID['REMOTE'], desired_caps)
     elif platform == 'IOS':
         CONFIG_IOS = load_configuration_from_file('config_iOS.json')
