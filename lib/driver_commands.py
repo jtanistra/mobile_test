@@ -8,14 +8,9 @@ class DriverCommands:
     def __init__(self, driver):
         self.driver = driver
         self.wait_time = 5
-    #
-    # def find_element(self, selector):
-    #     return self.driver.find_element(*selector)
-
 
     def find_element(self, selector):
-        element = self.wait_for_element_visibility(selector, wait=self.wait_time)
-        return element
+        return self.driver.find_element(*selector)
 
     def click_element(self, selector):
         element = self.find_element(selector)

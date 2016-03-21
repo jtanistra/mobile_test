@@ -5,9 +5,9 @@ Feature: Feature
     Given GV
     When WH
     Then TH
-
-  Scenario: Scenario 2
-
-    Given GV
-    When WH
-    Then TH
+#
+#  Scenario: Scenario 2
+#
+#    Given GV
+#    When WH
+#    Then TH

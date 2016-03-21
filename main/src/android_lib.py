@@ -3,18 +3,19 @@ from lib.configuration_reader import load_configuration_from_file
 import os
 from selenium.webdriver.common.by import By
 from lib.driver_commands import DriverCommands
+from attrdict import AttrDict
 
 
-class AndroidLib:
+class AndroidLib():
 
     def __init__(self, driver):
         self.driver = driver
         self.rec_path = load_configuration_from_file('android_config.json')['REC_PATH']
         self.logs_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/../logs/'
         self.dr_commands = DriverCommands(self.driver)
-        self.android_bar_selectors = {
-            'settings_icon': (By.ID, 'com.android.systemui:id/settings_button')
-        }
+        self.android_settings_selector =  (By.ID, 'com.android.systemui:id/settings_button')
+        self.android_bth_menu_selector = (By.NAME, 'Bluetooth')
+        self.android_bth_switch_selector = (By.ID, 'com.android.settings:id/switch_widget')
 
     def get_recorded_test(self, file_name):
         """
@@ -25,9 +26,9 @@ class AndroidLib:
         adb_pull(self.rec_path, file)
         print('INFO: screen record saved in logs directory')
 
-    def expoand_android_bar(self, driver):
+    def android_bar_expand(self, driver):
         """
-        Function open android task bar
+        Function opens android task bar
         :param driver: Appium driver
 
         """
@@ -35,8 +36,64 @@ class AndroidLib:
         driver.swipe(535,1, 535, 1000)
         print('INFO: android upper bar opened')
 
-    def click_settings_icon(self, driver):
-        self.dr_commands.find_element(self.android_bar_selectors['settings_icon'])
+    def settings_icon_click(self):
+        """
+        Function allows to open android settings
+        """
+        self.dr_commands.find_element(self.android_settings_selector).click()
+        print('INFO: android settings opened')
+
+    def bth_menu_click(self):
+        """
+        function opens bluetooth settings details
+        :return:
+        """
+        self.dr_commands.find_element(self.android_bth_menu_selector).click()
+        print('INFO: android bluetooth menur opened')
+
+    def bth_is_enabled(self):
+        """
+        function checks bluetooth adapter states
+        :return: Bool: True if bluetooth is enabled or False is not
+        """
+        state = self.dr_commands.find_element(self.android_bth_switch_selector).get_attribute('checked')
+        if state == 'false':
+            return False
+        else:
+            return True
+
+    def _bth_switch_click(self):
+        """
+        Function change bluetooth adapter state to next one.
+        """
+        self.dr_commands.find_element(self.android_bth_switch_selector).click()
+
+    def bth_enable(self):
+        print('INFO: Trying enable bluetooth')
+        state = self.bth_is_enabled()
+        if state:
+            print('WARNING: Bluetooth is already enabled')
+        else:
+            self._bth_switch_click()
+            print('INFO: Bluetooth enabled')
+
+    def bth_disable(self):
+        print("INFO: Trying disable bluetooth")
+        state = self.bth_is_enabled()
+        if state:
+            self._bth_switch_click()
+            print('INFO: Bluetooth disabled')
+        else:
+            print('WARNING: Bluetooth is already disabled')
+
+
+
+
+
+
+
+
+
 
 
 

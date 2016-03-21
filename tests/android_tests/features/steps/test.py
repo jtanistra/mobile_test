@@ -13,8 +13,9 @@ def step_impl(context):
 @given("GV")
 def step_impl(context):
     andr = AndroidLib(context.driver)
-    andr.expoand_android_bar(context.driver)
-    andr.click_settings_icon(context.driver)
+    andr.android_bar_expand(context.driver)
+    andr.settings_icon_click()
+    andr.bth_menu_click()
 
 
 @when("WH")
