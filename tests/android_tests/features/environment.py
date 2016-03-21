@@ -13,7 +13,10 @@ from main.src.android_lib import AndroidLib
 CONFIG = load_configuration_from_file('android_config.json')
 
 def before_all(context):
-    start_appium()
+    tags = CONFIG["APPIUM_TAGS"]
+    # for k, v in tags.items():
+    #     tag =
+    start_appium(str(tags))
 
 
 def before_feature(context, feature):

@@ -11,5 +11,10 @@
   "REC_PATH": "/sdcard/Download/test.mp4",
   "ANDROID_TAGS_ALL": [
     "AndroidRuntime"
-  ]
+  ],
+  "APPIUM_TAGS": {
+    "--device-ready-timeout": "15",
+    "--session-override": ""
+  }
 }
+

@@ -6,6 +6,12 @@
     "PLATFORM_NAME": "iOS",
     "PLATFORM_VERSION": "9.1",
     "UDID": "2e84a12f6013eb29be09a9d9ff31690e1e64b1e2",
-    "ORIENTATION": "PORTRAIT"
-    "BUNDLE_ID": ""
+    "ORIENTATION": "PORTRAIT",
+    "BUNDLE_ID": "",
+    "APPIUM_TAGS": {
+        "--device-ready-timeout": "15",
+        "--session-override": "",
+        "--orientation": "PORTRAIT",
+        "--show-ios-log": ""
+  }
 }
