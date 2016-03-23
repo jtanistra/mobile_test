@@ -1,10 +1,10 @@
 {
     "APP_PATH": "~/Desktop/AppiumApps/",
-    "APP_NAME": "slabs.app",
+    "APP_NAME": "Moa.app",
     "REMOTE": "http://localhost:4723/wd/hub",
     "DEVICE_NAME": "iPAD",
     "PLATFORM_NAME": "iOS",
-    "PLATFORM_VERSION": "9.1",
+    "PLATFORM_VERSION": "9.3",
     "UDID": "2e84a12f6013eb29be09a9d9ff31690e1e64b1e2",
     "ORIENTATION": "PORTRAIT",
     "BUNDLE_ID": "",

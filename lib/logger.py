@@ -3,7 +3,11 @@ import logging
 class Logger():
 
     def __init__(self):
-        self.format = logging.basicConfig(filename=None, level=logging.DEBUG, format='%(asctime)s -  %(levelname)s - %(message)s')
+        self.FORMAT  = '%(asctime)s - %(levelname)s: %(message)s'
+        self.format = logging.basicConfig(
+            filename=None,
+            level=logging.DEBUG,
+            format=self.FORMAT)
 
     def logger(self, level, msg):
         level = level.upper()
@@ -17,9 +21,11 @@ class Logger():
             logging.error(msg)
         elif level == 'CRITICAL':
             logging.critical(msg)
+        else:
+            raise ValueError('Unknown log level %s, available: INFO, WARNING, DEBUG, ERROR, CRITICAL' % msg)
 
 if __name__ == '__main__':
     l = Logger()
-    lev = ['INFO', 'warning', 'Debug', 'ERROR', 'CRITICAL']
+    lev = ['INFO', 'warning', 'Debug', 'ERROR', 'CRITICAL', 'asdas']
     for i in lev:
         l.logger(i, i)

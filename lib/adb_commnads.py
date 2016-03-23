@@ -1,6 +1,9 @@
 import subprocess
 import os
 import signal
+from lib.logger import Logger
+
+log = Logger()
 
 
 def _execute_command(cmd, *args):
@@ -11,10 +14,11 @@ def _execute_command(cmd, *args):
     """
     cmd = ''.join(cmd) + ' '.join(args)
     output = subprocess.getstatusoutput(cmd)
-    print('INFO: adb command: "%s %s " executed' % (cmd, str(args)))
+    log.logger('INFO', 'adb command: "%s %s " executed' % (cmd, str(args)))
+
     if output[0]:
         raise AssertionError('Non zero status output. \n %s' % output[1])
-    print('INFO: ','adb command output:', output[1])
+    log.logger('INFO', 'adb command output: %s' % output[1])
     return output[1]
 
 
@@ -36,7 +40,7 @@ def _kill_subprocess():
     try:
         os.kill(pid, signal.SIGINT)
     except (KeyboardInterrupt, SystemExit):
-        print('INFO: Subprocess killed')
+        log.logger('INFO', 'Subprocess killed')
 
 
 def adb_install(apk, *options):
@@ -85,8 +89,8 @@ def adb_logcat_android(log_level ='v', tags_list=[]):
     file = "mesh_tool_system_logs.log"
     path = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/logs/' + file
     U_COMMAND = 'adb logcat -s ' + str(tags_list) + ' > ' + path
-    print('INFO: adb command: ' + str(U_COMMAND))
-    print('INFO: Start android log to file: ' + str(path))
+    log.logger('INFO', 'adb command: ' + str(U_COMMAND))
+    log.logger('INFO', 'Start android log to file: %s ' % path)
     _execute_subprocess(U_COMMAND)
 
 
@@ -103,7 +107,7 @@ def adb_logcat_android_stop():
     Stops android adb logcat
     """
     _kill_subprocess()
-    print('INFO: Stop android logs')
+    log.logger('INFO', 'Stop android logs')
 
 
 def adb_devices():
@@ -159,8 +163,7 @@ def adb_shell_screenrecord(file, **kwargs):
     """
     cmd = 'adb shell screenrecord ' + file
     _execute_subprocess(cmd)
-    print('INFO: Screen recording started')
-
+    log.logger('INFO', 'Screen recording started')
 
 def adb_shell_screenrecord_stop():
     """
@@ -169,7 +172,9 @@ def adb_shell_screenrecord_stop():
     _kill_subprocess()
     adb_kill_server()
     adb_devices()
-    print('INFO: Screen Recording stopped')
+    log.logger('INFO', 'Screen recording stopped')
 
 
 
+if __name__ == '__main__':
+    adb_devices()
