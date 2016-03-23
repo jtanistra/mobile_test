@@ -27,6 +27,8 @@ def before_feature(context, feature):
 
 def before_scenario(context, scenario):
     log.logger('DEBUG', 'Before scenario\n')
+    logs_file = scenario.__dict__['name'].replace(' ', '') + '.log'
+    cmd.start_ios_logs(logs_file)
     context.driver.close_app()
     context.driver.launch_app()
 
@@ -37,6 +39,7 @@ def after_scenario(context,scenario):
         screenshot = scenario.__dict__['name'].replace(' ', '') + '.png'
         cmd.take_scrennshot(screenshot)
     context.driver.close_app()
+    cmd.stop_ios_logs()
 
 
 def after_feature(context,feature):

@@ -73,7 +73,7 @@ def adb_uninstall(package, option=''):
         raise AssertionError(cmd_output)
 
 
-def adb_logcat_android(log_level ='v', tags_list=[]):
+def adb_logcat_android(file, log_level ='v', tags_list=[],):
     """
     returns android logs to txt file in logs directory. Logs can be filtred by tags or by app package.
     :param tags_list: can be string in specific format: '"TAG1","TAG2","TAG3"'
@@ -86,7 +86,6 @@ def adb_logcat_android(log_level ='v', tags_list=[]):
     *:F filter to only show Fatal level
     *:S Silent, highest priority, on which nothing is ever printed
     """
-    file = "mesh_tool_system_logs.log"
     path = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/logs/' + file
     U_COMMAND = 'adb logcat -s ' + str(tags_list) + ' > ' + path
     log.logger('INFO', 'adb command: ' + str(U_COMMAND))

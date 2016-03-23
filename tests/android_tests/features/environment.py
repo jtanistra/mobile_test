@@ -28,7 +28,8 @@ def before_feature(context, feature):
 def before_scenario(context, scenario):
     print("Before scenario\n")
     adb_shell_screenrecord(CONFIG['REC_PATH'])
-    adb_logcat_android(CONFIG['ANDROID_TAGS_ALL'])
+    log_file_name = scenario.__dict__['name'].replace(' ', '') + '.log'
+    adb_logcat_android(log_file_name, CONFIG['ANDROID_TAGS_ALL'])
     context.driver.close_app()
     context.driver.launch_app()
 
@@ -39,8 +40,6 @@ def after_scenario(context,scenario):
     if context.failed:
         context.andr_lib = AndroidLib(context.driver)
         movie_name = scenario.__dict__['name'].replace(' ', '') + '.mp4'
-        print(scenario.__dict__['name'].replace(' ', ''))
-        print(movie_name)
         context.andr_lib.get_recorded_test(movie_name.replace(' ', ''))
     context.driver.close_app()
 

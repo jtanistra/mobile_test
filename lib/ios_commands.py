@@ -9,16 +9,15 @@ import os
 import subprocess
 import signal
 from lib.logger import Logger
-import shutil
 
 class Commands(Logger):
 
     def __init__(self):
-        self.path = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/logs/'
+        self.log_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/logs/'
         self.current_path = os.path.dirname(__file__)
 
     def take_scrennshot(self, file_name):
-        cmd = 'idevicescreenshot ' + self.path + file_name
+        cmd = 'idevicescreenshot ' + self.log_path + file_name
         self._execute_command(cmd)
 
     def _execute_command(self, cmd, *args):
@@ -32,30 +31,35 @@ class Commands(Logger):
         if output[0]:
             raise AssertionError('Non zero status output. \n %s' % output[1])
         self.logger('INFO', 'ios commands output: %s' % output[1])
-        print(os.path.dirname(__file__))
         return output[1]
 
-# def _execute_subprocess(cmd):
-#     """
-#     Internal function execute command in subprocess
-#     :param cmd: command
-#     """
-#     subprocess.Popen(cmd,
-#                     stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-#                     shell=True, preexec_fn=os.setsid)
-#
-#
-# def _kill_subprocess():
-#     """
-#     kills executeted subprocess by KeyboardInterupt
-#     """
-#     pid = os.getpid()
-#     try:
-#         os.kill(pid, signal.SIGINT)
-#     except (KeyboardInterrupt, SystemExit):
-#         print('INFO: Subprocess killed')
-#
-#
+    def start_ios_logs(self, file_name):
+        self._execute_subprocess('idevicesyslog > ' + self.log_path + file_name)
+
+    def _execute_subprocess(self, cmd):
+        """
+        Internal function execute command in subprocess
+        :param cmd: command
+        """
+        subprocess.Popen(cmd,
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                        shell=True, preexec_fn=os.setsid)
+
+
+    def stop_ios_logs(self):
+        self._kill_subprocess()
+
+    def _kill_subprocess(self):
+        """
+        kills executeted subprocess by KeyboardInterupt
+        """
+        pid = os.getpid()
+        try:
+            os.kill(pid, signal.SIGINT)
+        except (KeyboardInterrupt, SystemExit):
+            self.logger('INFO', 'Subprocess killed')
+
+
 #
 # if __name__=='__main__':
 #     cmd = Commands()

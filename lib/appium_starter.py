@@ -25,4 +25,4 @@ def stop_appium():
     Kill node process
     """
     subprocess.call(('pkill', 'node'))
-    log.logger('INFO', 'Appium server started')
+    log.logger('INFO', 'Appium server stoped')
