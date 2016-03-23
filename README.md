@@ -12,6 +12,7 @@ Requires environment:
     ** MacOS X 10.7
     ** Xcode
     ** mobiledevice - https://github.com/imkira/mobiledevice - brew install mobiledevice
+    ** libimobiledevice - https://github.com/benvium/libimobiledevice-macosx
  Android
     ** Mac OSX 10.7+ or Windows 7+ or Linux
     ** Android SDK https://developer.android.com/sdk/installing/index.html
