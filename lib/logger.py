@@ -1,5 +1,6 @@
 import logging
 
+
 class Logger():
 
     def __init__(self):
@@ -26,6 +27,6 @@ class Logger():
 
 if __name__ == '__main__':
     l = Logger()
-    lev = ['INFO', 'warning', 'Debug', 'ERROR', 'CRITICAL', 'asdas']
+    lev = ['INFO', 'warning', 'Debug', 'ERROR', 'CRITICAL']
     for i in lev:
         l.logger(i, i)

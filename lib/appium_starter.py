@@ -1,7 +1,6 @@
 import subprocess
 import os
 from time import sleep
-import datetime
 from lib.logger import Logger
 
 log = Logger()
