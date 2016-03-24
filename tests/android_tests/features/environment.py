@@ -9,7 +9,6 @@ from lib.create_driver import create_driver
 from lib.adb_commnads import adb_shell_screenrecord, adb_logcat_android, adb_shell_screenrecord_stop
 from lib.configuration_reader import load_configuration_from_file
 from main.src.android_lib import AndroidLib
-from behave.log_capture import capture
 
 CONFIG = load_configuration_from_file('android_config.json')
 

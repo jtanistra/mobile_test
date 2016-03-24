@@ -10,6 +10,7 @@ import subprocess
 import signal
 from lib.logger import Logger
 
+
 class Commands(Logger):
 
     def __init__(self):
@@ -45,7 +46,6 @@ class Commands(Logger):
                         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                         shell=True, preexec_fn=os.setsid)
 
-
     def stop_ios_logs(self):
         self._kill_subprocess()
 
@@ -58,9 +58,3 @@ class Commands(Logger):
             os.kill(pid, signal.SIGINT)
         except (KeyboardInterrupt, SystemExit):
             self.logger('INFO', 'Subprocess killed')
-
-
-#
-# if __name__=='__main__':
-#     cmd = Commands()
-#     cmd.take_scrennshot(file_name='asd.png')
