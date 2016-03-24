@@ -9,12 +9,13 @@ class DriverCommands:
         self.driver = driver
         self.wait_time = 5
 
-    def find_element(self, selector):
-        """
+    """ def find_element(self, selector):
+
         :param selector: touple (eg. By.ID, 'element/id')
         :return: elements hamdler
-        """
+
         return self.driver.find_element(*selector)
+    """
 
     def click_element(self, selector):
         """
@@ -49,6 +50,7 @@ class DriverCommands:
         element = self.find_element(selector)
         return element.is_selected()
 
+    """
     def wait_for_element_visibility(self, *selector, wait=None):
         wait = wait or self.wait_time
         try:
@@ -56,4 +58,12 @@ class DriverCommands:
             return element
         except (TimeoutException, NoSuchElementException):
             raise AssertionError( 'Could not find element' + str(selector))
+    """
 
+    def find_element(self, selector, wait=None):
+        wait = wait or self.wait_time
+        try:
+            element = WebDriverWait(self.driver, wait).until(EC.presence_of_element_located(selector))
+            return element
+        except TimeoutException:
+            raise AssertionError('Could not find element' + str(selector))

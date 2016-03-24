@@ -36,7 +36,6 @@ def after_scenario(context,scenario):
     if context.failed:
         context.andr_lib = AndroidLib(context.driver)
         movie_name = scenario.__dict__['name'] + '.mp4'
-        print(scenario.__dict__['name'].replace(' ', ''))
         print(movie_name)
         context.andr_lib.get_recorded_test(movie_name.replace(' ', ''))
     context.driver.close_app()

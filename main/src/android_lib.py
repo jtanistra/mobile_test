@@ -4,7 +4,6 @@ import os
 from selenium.webdriver.common.by import By
 from lib.driver_commands import DriverCommands
 
-
 class AndroidLib():
 
     def __init__(self, driver):
@@ -12,9 +11,9 @@ class AndroidLib():
         self.rec_path = load_configuration_from_file('android_config.json')['REC_PATH']
         self.logs_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/../logs/'
         self.dr_commands = DriverCommands(self.driver)
-        self.android_settings_selector =  (By.ID, 'com.android.systemui:id/settings_button')
+        self.android_settings_selector = (By.ID, 'com.android.systemui:id/setting_button')
         self.android_bth_menu_selector = (By.NAME, 'Bluetooth')
-        self.android_bth_switch_selector = (By.ID, 'com.android.settings:id/switch_widget')
+        self.android_bth_switch_selector = (By.XPATH, '//android.widget.LinearLayout[3]/android.widget.Switch[1]')
 
     def get_recorded_test(self, file_name):
         """
@@ -31,8 +30,9 @@ class AndroidLib():
         :param driver: Appium driver
 
         """
-        driver.swipe(535,1, 535, 1000)
-        driver.swipe(535,1, 535, 1000)
+        driver.swipe(535, 1, 535, 2)
+        driver.swipe(535, 1, 535, 1000)
+        #driver.swipe(535, 1, 535, 1000)
         print('INFO: android upper bar opened')
 
     def settings_icon_click(self):

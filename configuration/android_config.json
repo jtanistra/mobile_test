@@ -3,9 +3,9 @@
   "APP_NAME": "app-debug.apk",
   "REMOTE": "http://localhost:4723/wd/hub",
   "APP_ACTIVITY": "com.silvair.app.activity.MainActivity",
-  "DEVICE_NAME": "Nexus 5",
+  "DEVICE_NAME": "HTC One_M8",
   "PLATFORM_NAME": "Android",
-  "PLATFORM_VERSION": "5.0",
+  "PLATFORM_VERSION": "5.0.1",
   "APP_PACKAGE": "com.silvair.app",
   "APP_WAIT_ACTIVITY": "com.silvair.app.activity.MainActivity",
   "REC_PATH": "/sdcard/Download/test.mp4",
@@ -17,4 +17,3 @@
     "--session-override": ""
   }
 }
-

@@ -15,7 +15,7 @@ def step_impl(context):
     andr = AndroidLib(context.driver)
     andr.android_bar_expand(context.driver)
     andr.settings_icon_click()
-    andr.bth_menu_click()
+    andr._bth_switch_click()
 
 
 @when("WH")
