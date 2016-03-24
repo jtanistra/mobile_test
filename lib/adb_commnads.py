@@ -67,7 +67,6 @@ def adb_uninstall(package, option=''):
     :param option: default disabled
     -k keep the data and cache directories around
     """
-    # cmd_output = _execute_command('adb uninstall ', option, package)
     cmd_output = _execute_command('adb shell pm uninstall ', option, package)
     if 'Failure' in cmd_output:
         raise AssertionError(cmd_output)
