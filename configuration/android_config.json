@@ -8,7 +8,7 @@
   "PLATFORM_VERSION": "5.0",
   "APP_PACKAGE": "com.silvair.app",
   "APP_WAIT_ACTIVITY": "com.silvair.app.activity.MainActivity",
-  "REC_PATH": "/sdcard/Download/test.mp4",
+  "REC_PATH": "/sdcard/demo.mp4",
   "ANDROID_TAGS_ALL": [
     "AndroidRuntime"
   ],

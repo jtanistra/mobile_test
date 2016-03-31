@@ -7,17 +7,17 @@ use_step_matcher("re")
 
 @then("TH")
 def step_impl(context):
-    pass
+    andr.bth_menu_click()
+    assert False
 
 
 @given("GV")
 def step_impl(context):
+    global andr
     andr = AndroidLib(context.driver)
     andr.android_bar_expand(context.driver)
-    andr.settings_icon_click()
-    andr.bth_menu_click()
 
 
 @when("WH")
 def step_impl(context):
-    pass
+    andr.settings_icon_click()

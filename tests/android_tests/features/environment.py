@@ -9,6 +9,7 @@ from lib.create_driver import create_driver
 from lib.adb_commnads import adb_shell_screenrecord, adb_logcat_android, adb_shell_screenrecord_stop
 from lib.configuration_reader import load_configuration_from_file
 from main.src.android_lib import AndroidLib
+from time import sleep
 
 CONFIG = load_configuration_from_file('android_config.json')
 
@@ -35,6 +36,7 @@ def before_scenario(context, scenario):
 
 def after_scenario(context,scenario):
     print("After scenario\n")
+    sleep(1)
     adb_shell_screenrecord_stop()
     if context.failed:
         context.andr_lib = AndroidLib(context.driver)
