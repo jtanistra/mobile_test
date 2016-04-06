@@ -1,4 +1,4 @@
-# mobileTestZKwiatuszkiem
+# mobile_test
 
 Project for testing s-labs mobile applications.
 
