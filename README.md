@@ -13,6 +13,7 @@ Requires environment:
     ** MacOS X 10.7
     ** Xcode
     ** mobiledevice - https://github.com/imkira/mobiledevice - brew install mobiledevice
+    ** libimobiledevice - https://github.com/benvium/libimobiledevice-macosx
  
  Android
  
